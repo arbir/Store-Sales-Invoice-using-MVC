@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
+
+    <script src="~/NgScript/Controllers/NgController.js"></script>
+    <script src="~/NgScript/Services/crudService.js"></script>
+
+    <title></title>
+</head>
+<div ng-app="myApp">
+    <div ng-controller="validateCtrl">
+        <h2>Invoice</h2>
+        <div class="widget-content" ng-show="IsShow">
+
+
+            <div>
+                <form>
+                    <br />
+                    <label for="Name">Bill No</label><br />
+                    <input type="text" id="name" ng-model="BillNo" /> <br />
+
+                    <label for="Name">Name</label><br />
+                    <input type="text" id="name" ng-model="Name" /> <br />
+                    <label for="Name">Address</label><br />
+                    <input type="text" id="name" ng-model="Address" /> <br />
+                    <label for="Name">Phone</label><br />
+                    <input type="text" id="name" ng-model="Phone" /> <br />
+
+                    <br />
+                    
+                    <input type="button" class="btn btn-success" value="Submit" ng-click="SaveUpdate()" />
+                    <input type="button" class="btn btn-success" value="Add Detail" ng-click="ShowHide()" />
+                    <input type="button" class="btn btn-danger" value="Show" ng-click="showList()" />
+                    
+                </form>
+                @*<form ng-submit="ShowList()">
+                        <br/>
+
+
+                        <input type="submit" class="btn btn-danger" value="Show" />
+                        <div ui-grid="gridOptions" ui-grid-pagination></div>
+                    </form>*@
+
+
+            </div>
+        </div>
+        <div class ="row" ng-hide="IsHidden">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add New Row" ng-click="AddVehicleInfo()" />
+                    <div class="widget-content no-padding">
+                        <div>
+                            <style>
+                                input[type=number]::-webkit-inner-spin-button,
+                                input[type=number]::-webkit-outer-spin-button {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    margin: 0;
+                                }
+                            </style>
+
+                            <table class="table table-hover general-table" style="overflow: auto;">
+                                <thead class="grid-top-panel">
+                                    <tr>
+                                        <th class="defaultClass" style="width: 175px;">ItemName</th>
+                                        <th class="defaultClass" style="width: 175px;">Quantity</th>
+                                        <th class="defaultClass" style="width: 175px;">UnitPrice</th>
+                                        <th class="defaultClass" style="width: 175px;">price</th>
+                                        <th class="inputOptionClass" style="min-width:10px"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="rowdiv" style="max-height: 350px; overflow: auto; min-width: 500px">
+                                <table style="width: 100%;">
+                                    <tr ng-repeat="dataModel in ListItemInfo" ng-class="{'rowselected':$index == selectedRow}" ng-click="setClickedRow($index)">
+
+                                        
+                                        <td class="inputClass" style="width:165px">
+                                            <input type="text" id="ItemName" ng-model="dataModel.ItemName" /> <br />
+                                        </td>
+                                        <td class="inputClass" style="width:100px">
+                                            <input type="text" id="Quantity" ng-model="dataModel.Quantity" /> <br />
+                                        </td>
+                                        <td class="inputClass" style="width:100px">
+                                            <input type="text" id="UnitPrice" ng-model="dataModel.UnitPrice" /> <br />
+                                        </td>
+                                        <td class="inputClass" style="width:100px">
+                                            <input type="text" id="price" ng-model="dataModel.price" /> <br />
+                                        </td>
+                                        <td class="inputOptionClass" style="text-align:center">
+                                            @*<span class="label label-danger label-mini" style="background-color:brown; margin-top:-75px">
+                                                <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                                                    <i class="icon-trash" ng-click="deleteRowVehicle(dataModel,$index)"></i>
+                                                </a>
+                                            </span>*@
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+    </div>
+        <div>
+            <div ui-grid="gridOptions" ui-grid-pagination></div>
+        </div>
+</div>
